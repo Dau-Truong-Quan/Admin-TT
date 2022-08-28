@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="27f967a8-3eac-433a-b66c-c1d1ea49e484" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HOC/CyberBug/DrawerCycberbug.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/HOC/CyberBug/DrawerCycberbug.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/CycberBug/Main/ContentCycberbug.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/CycberBug/Main/ContentCycberbug.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/CycberBug/Main/HeaderCycberbug.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/CycberBug/Main/HeaderCycberbug.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/CycberBug/Main/InforCyberBug.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/CycberBug/Main/InforCyberBug.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/CycberBug/SidebarCycberbug.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/CycberBug/SidebarCycberbug.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/demoSlice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/history/HistoryRedux.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/login/CyberBugLoginReduxToolkit.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/productLists/productListSlide.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/storeToolkit.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/CyberBugs/ProjectCategorySage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sagas/CyberBugs/ProjectCategorySage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/CyberBugs/ProjectSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sagas/CyberBugs/ProjectSaga.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/CyberBugs/UserCyberBugReducer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/CyberBugs/UserCyberBugSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sagas/CyberBugs/UserCyberBugSaga.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/reducer/DrawerCycberBugReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sagas/reducer/DrawerCycberBugReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/reducer/ProjectReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sagas/reducer/ProjectReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/rootSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sagas/rootSaga.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sagas/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ProjectService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ProjectService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/userService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/userSlice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/template/HomeTemplate/indexCycberbug.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/template/HomeTemplate/indexCycberbug.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/template/Page/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/template/Page/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/template/Page/ProjectManager/ProjectManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/template/Page/ProjectManager/ProjectManager.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2DoZYiulUzJw2qti4aFPjF1p4DX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="27f967a8-3eac-433a-b66c-c1d1ea49e484" name="Changes" comment="" />
+      <created>1661367449787</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1661367449787</updated>
+    </task>
+    <servers />
+  </component>
+</project>
