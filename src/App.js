@@ -10,7 +10,7 @@ import {
 import { HomeTemplate } from "./template/HomeTemplate/HomeTemplate";
 import Login from "./template/Page/Login/Login";
 import { LoginTemplate } from "./template/HomeTemplate/LoginTemplate";
-import Form from "./template/Page/Home/Form";
+
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { CycberBugTemplate } from "./template/HomeTemplate/CycberBugTemplate";
@@ -19,6 +19,8 @@ import CreateProject from "./template/Page/Cycberbug/CreateProject/CreateProject
 import ProjectManager from "./template/Page/ProjectManager/ProjectManager";
 import DrawerCycberbug from "./HOC/CyberBug/DrawerCycberbug";
 import IndexCycberbug from "./template/HomeTemplate/indexCycberbug";
+import TabOrder from "./template/Page/OrderManager/TabOrder";
+import Dashboard from "./template/Page/Dashboard/Dashboard";
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -45,6 +47,8 @@ function App() {
           path="/createProject"
           Component={CreateProject}
         />
+        <CycberBugTemplate exact path="/" Component={Dashboard} />
+        <CycberBugTemplate exact path="/order" Component={TabOrder} />
       </Switch>
     </>
   );

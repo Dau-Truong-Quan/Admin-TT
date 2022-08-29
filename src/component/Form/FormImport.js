@@ -22,6 +22,7 @@ import FormEditProject from "./FormEditProject";
 
 import { GET_ALL_PRODUCT_SAGA } from "../../util/constant/ProductConstant";
 import FormAddProductToImport from "./FormAddProductToImport";
+import { DELETE_IMPORT_DETAIL_SAGA } from "../../util/constant/ImportDetailConstant";
 
 const FormImport = () => {
   const [sortedInfo, setSortedInfo] = useState({});
@@ -29,10 +30,13 @@ const FormImport = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: GET_ALL_PRODUCT_SAGA });
+    dispatch({ type: "SUBMIT_CREATE_TASK", Submition: handleSubmit2 });
   }, []);
 
   const arr = useSelector((state) => state.ImportDetailReducer.arrImportDetail);
-
+  const handleSubmit2 = () => {
+    dispatch({ type: "CLOSE_DRAWER" });
+  };
   const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
   };
@@ -71,7 +75,7 @@ const FormImport = () => {
       key: "action",
       render: (_, record) => (
         <Space size="middle">
-          <EditOutlined
+          {/* <EditOutlined
             onClick={() => {
               const action = {
                 type: "OPEN_FORM_EDIT_DRAWER",
@@ -83,17 +87,17 @@ const FormImport = () => {
 
               dispatch({
                 type: "EDIT_PROJECT",
-                projectEdit: record,
+                id: record.id,
               });
             }}
-          />
+          /> */}
 
           <Popconfirm
-            title="Are you sure to delete this task?"
+            title="Are you sure to delete this import?"
             onConfirm={() => {
               const action = {
-                type: "DELETE_PROJECT_SAGA",
-                idProject: record.id,
+                type: DELETE_IMPORT_DETAIL_SAGA,
+                idProduct: record.id,
               };
 
               dispatch(action);

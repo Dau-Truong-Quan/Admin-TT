@@ -11,6 +11,7 @@ import { message, Popconfirm } from "antd";
 import { NavLink } from "react-router-dom";
 import {
   CREATE_IMPORT_SAGA,
+  DELETE_IMPORT_SAGA,
   GET_ALL_IMPORT,
   GET_ALL_IMPORT_SAGA,
   GET_ID_IMPORT,
@@ -74,14 +75,15 @@ const ProjectManager = () => {
           />
 
           <Popconfirm
-            title="Are you sure to delete this task?"
+            title="Are you sure to delete this import?"
             onConfirm={() => {
               const action = {
-                type: "DELETE_PROJECT_SAGA",
-                idProject: record.id,
+                type: DELETE_IMPORT_SAGA,
+                id: record.id,
               };
 
               dispatch(action);
+              dispatch({ type: GET_ALL_IMPORT_SAGA });
             }}
             okText="Yes"
             cancelText="No"
@@ -100,6 +102,21 @@ const ProjectManager = () => {
           marginBottom: 16,
         }}
       ></Space>
+      <Button
+        type="primary"
+        onClick={() => {
+          const action = {
+            type: "OPEN_FORM_CREATE_TASK",
+            Component: <FormImport />,
+            title: "Phiếu nhập mới",
+          };
+
+          dispatch(action);
+          dispatch({ type: CREATE_IMPORT_SAGA });
+        }}
+      >
+        Thêm phiếu nhập
+      </Button>
       <Table columns={columns} dataSource={arr} onChange={handleChange} />
     </div>
   );

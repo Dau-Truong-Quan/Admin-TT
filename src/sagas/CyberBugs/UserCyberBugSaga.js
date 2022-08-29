@@ -26,6 +26,13 @@ function* signinSaga(action) {
     console.log(data);
     localStorage.setItem(TOKEN_CYBERSOFT, data.accessToken);
     localStorage.setItem(USER_LOGIN, JSON.stringify(data));
+    localStorage.setItem(
+      "login",
+      JSON.stringify({
+        login: true,
+        dataLogin: data,
+      })
+    );
 
     yield put({
       type: USER_LOGIN,

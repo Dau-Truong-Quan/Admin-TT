@@ -104,7 +104,7 @@ const addProductToImport = withFormik({
     return {
       price: 0,
       quantity: 0,
-      productId: 0,
+      productId: arrProduct[0]?.productId,
     };
   },
   validationSchema: Yup.object().shape({}),

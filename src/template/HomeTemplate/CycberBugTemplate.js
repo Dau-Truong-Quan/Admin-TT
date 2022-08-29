@@ -16,8 +16,6 @@ export const CycberBugTemplate = (props) => {
         return (
           <div>
             <div className="jira">
-              {/* Sider Bar  */}
-              <SidebarCycberbug />
               {/* Menu */}
               <MenuCycberBug />
               {/* {/* {/* Main Board * /} * /} */}

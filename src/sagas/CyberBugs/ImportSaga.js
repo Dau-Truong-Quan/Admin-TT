@@ -20,17 +20,21 @@ import { priorityService } from "../../services/PriorityService";
 import {
   CREATE_IMPORT,
   CREATE_IMPORT_SAGA,
+  DELETE_IMPORT_SAGA,
   GET_ALL_IMPORT,
   GET_ALL_IMPORT_SAGA,
   GET_ID_IMPORT,
 } from "../../util/constant/ImportConstant";
 import { importService } from "../../services/ImportService";
-import { GET_ALL_IMPORTDETAIL } from "../../util/constant/ImportDetailConstant";
+import {
+  GET_ALL_IMPORTDETAIL,
+  GET_ALL_IMPORTDETAIL_SAGA,
+} from "../../util/constant/ImportDetailConstant";
 import { USER_LOGIN } from "../../services/configURL";
 function* getAllImport(action) {
   try {
     const { data, status } = yield call(() => importService.getAllImport());
-
+    console.log(data);
     yield put({
       type: GET_ALL_IMPORT,
       arrImport: data,
@@ -78,4 +82,28 @@ function* createImport(action) {
 
 export function* theodoicreateImport() {
   yield takeLatest(CREATE_IMPORT_SAGA, createImport);
+}
+
+function* deleteImport(action) {
+  let id = yield select((state) => state.ImportReducer.id);
+  try {
+    const { data, status } = yield call(() =>
+      importService.deleteImport(action.id)
+    );
+    console.log(data);
+
+    yield put({ type: GET_ALL_IMPORT_SAGA });
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response);
+    } else if (error.request) {
+      console.log("request");
+    } else if (error.message) {
+      console.log(error.message);
+    }
+  }
+}
+
+export function* theodoideleteImport() {
+  yield takeLatest(DELETE_IMPORT_SAGA, deleteImport);
 }

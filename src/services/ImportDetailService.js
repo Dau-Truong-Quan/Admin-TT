@@ -8,12 +8,6 @@ export class ImportDetailService extends QuanService {
   getAllImportDetail = (id) => {
     return this.get(`admin/import/import-detail?importId=${id}`);
   };
-  addProductToImport = (id, importDetailDTO) => {
-    console.log(importDetailDTO);
-    return this.post(`admin/import/addProduct?id=${id}`, {
-      importDetailDTO: importDetailDTO,
-    });
-  };
 
   addProductToImport2 = (id, importDetailDTO) => {
     return Axios({
@@ -25,6 +19,9 @@ export class ImportDetailService extends QuanService {
         quantity: importDetailDTO.quantity,
       },
     });
+  };
+  deleteImportDetail = (id) => {
+    return this.post(`admin/import/deleteImportDetail?id=${id}`);
   };
 }
 

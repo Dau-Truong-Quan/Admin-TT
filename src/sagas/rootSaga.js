@@ -31,7 +31,9 @@ export function* rootSaga() {
     ProductSaga.theodoigetAllProduct(),
     ImportSaga.theodoigetAllImport(),
     ImportSaga.theodoicreateImport(),
+    ImportSaga.theodoideleteImport(),
     ImportDetailSaga.theodoigetAllImportDetail(),
     ImportDetailSaga.theodoiaddProductToImport(),
+    ImportDetailSaga.theodoideleteImportDetail(),
   ]);
 }

@@ -462,3 +462,114 @@
   font-size: 14px;
 }
 
+/*test*/
+.order__view {
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: rgba(9, 30, 66, 0.082) 0px 0.5px 0.5px, rgba(9, 30, 66, 0.13) 0px 0px 0.5px 0.5px;
+  padding: 40px 20px;
+}
+.order__view__header {
+  display: flex;
+  justify-content: right;
+  color: #26aa99;
+  margin-right: 13px;
+}
+.order__view__header .MuiListItemIcon-root {
+  min-width: 30px;
+}
+.order__view .border__seapare {
+  margin: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, .09);
+}
+.order__view__body {
+  display: flex;
+  margin: 10px 10px;
+}
+.order__view__body__image {
+  margin-right: 10px;
+}
+.order__view__body__image img {
+  height: 80px;
+  width: 80px;
+}
+.order__view__body__content {
+  margin-right: 200px;
+}
+.order__view__body__price {
+  display: flex;
+  margin-left: auto;
+  margin-right: 0;
+  align-items: center;
+}
+.order__view__body__price div:nth-child(2) {
+  margin-left: 15px;
+  color: #ee4d2d !important;
+}
+.order__view__footer__totalprice {
+  display: flex;
+  margin-right: 15px;
+  justify-content: right;
+}
+.order__view__footer__totalprice .MuiListItemIcon-root {
+  min-width: 30px;
+}
+.order__view__footer__button {
+  margin-right: 15px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: right;
+}
+.order__view__footer__button button:nth-child(2) {
+  margin-left: 20px;
+}
+.order__view__footer__button .stardust-button {
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid rgba(0, 0, 0, .26);
+  background-color: #fff;
+  color: rgba(0, 0, 0, .87);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  border-radius: 2px !important;
+  color: #555;
+  text-transform: capitalize;
+  outline: none;
+}
+.order__view__footer__button .stardust-button svg {
+  fill: #555;
+  margin-right: 10px;
+}
+.order__view__footer__button .stardust-button ._5qwP-1 {
+  width: 12px;
+  fill: #555;
+  margin-right: 5px;
+}
+.order__view__footer__button .stardust-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, .09);
+  border-radius: 2px !important;
+  color: #555;
+  text-transform: capitalize;
+  outline: none;
+}
+.order__view__footer__button .stardust-button--primary {
+  background: #ee4d2d !important;
+  color: #fff !important;
+  padding: 10px 24px;
+  width: 150px;
+  height: 40px;
+}
+.MuiTabs-flexContainer {
+  display: flex;
+  justify-content: space-around;
+}

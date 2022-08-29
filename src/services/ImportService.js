@@ -10,6 +10,10 @@ export class ImportService extends QuanService {
   createImport = (id) => {
     return this.post(`admin/import?id=${id}`);
   };
+
+  deleteImport = (id) => {
+    return this.post(`admin/import/deleteImport?id=${id}`);
+  };
 }
 
 export const importService = new ImportService();

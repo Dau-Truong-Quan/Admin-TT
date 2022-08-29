@@ -16,6 +16,7 @@ import {
 import {
   ADD_PRODUCT_TO_IMPORT,
   ADD_PRODUCT_TO_IMPORT_SAGA,
+  DELETE_IMPORT_DETAIL_SAGA,
   GET_ALL_IMPORTDETAIL,
   GET_ALL_IMPORTDETAIL_SAGA,
 } from "../../util/constant/ImportDetailConstant";
@@ -70,4 +71,30 @@ function* addProductToImport(action) {
 
 export function* theodoiaddProductToImport() {
   yield takeLatest(ADD_PRODUCT_TO_IMPORT_SAGA, addProductToImport);
+}
+
+function* deleteImportDetail(action) {
+  let id = yield select((state) => state.ImportReducer.id);
+  try {
+    const { data, status } = yield call(() =>
+      importDetailService.deleteImportDetail(action.idProduct)
+    );
+
+    yield put({
+      type: GET_ALL_IMPORTDETAIL_SAGA,
+      id,
+    });
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response);
+    } else if (error.request) {
+      console.log("request");
+    } else if (error.message) {
+      console.log(error.message);
+    }
+  }
+}
+
+export function* theodoideleteImportDetail() {
+  yield takeLatest(DELETE_IMPORT_DETAIL_SAGA, deleteImportDetail);
 }

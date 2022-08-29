@@ -8,6 +8,7 @@ import "antd/dist/antd.min.css";
 import { Provider } from "react-redux";
 import { BrowserRouter, Router } from "react-router-dom";
 import { history } from "./util/lib/history";
+
 import store from "./sagas/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

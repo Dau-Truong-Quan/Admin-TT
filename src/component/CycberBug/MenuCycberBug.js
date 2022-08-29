@@ -19,9 +19,19 @@ const MenuCycberBug = () => {
           <NavLink
             className="text-dark"
             activeClassName="font-weight-bold"
-            to="/cycberBug"
+            to="/"
           >
-            Cyber Board
+            Dashboard
+          </NavLink>
+        </div>
+        <div>
+          <i className="fa fa-credit-card" />
+          <NavLink
+            className="text-dark"
+            activeClassName="font-weight-bold"
+            to="/order"
+          >
+            Manager Order
           </NavLink>
         </div>
         <div>
