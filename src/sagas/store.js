@@ -15,6 +15,10 @@ import { ProductReducer } from "./reducer/ProductReducer";
 import { ImportReducer } from "./reducer/ImportReducer";
 import { ImportDetailReducer } from "./reducer/ImportDetailRecuder";
 import { FormAddProductToImpotReducer } from "./reducer/FormAddProductToImpotReducer";
+import { DashboardReducer } from "./reducer/DashboardReducer";
+import { UploadImageReducer } from "./reducer/UploadImageReducer";
+import { CategoryReducer } from "./reducer/CategoryReducer";
+import { BrandReducer } from "./reducer/BrandReducer";
 const middleSaga = createSagaMiddleware();
 
 const rootReducer = combineReducers({
@@ -32,6 +36,10 @@ const rootReducer = combineReducers({
   ImportReducer,
   ImportDetailReducer,
   FormAddProductToImpotReducer,
+  DashboardReducer,
+  UploadImageReducer,
+  CategoryReducer,
+  BrandReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(middleSaga));

@@ -1,26 +1,81 @@
 import ReactApexChart from "react-apexcharts";
 import { Row, Col, Typography } from "antd";
 import eChart from "./configs/eChart";
-
-function EChart() {
+import React, { useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import numberWithCommas from "../../../util/lib/numberWithCommas";
+function EChart(props) {
   const { Title, Paragraph } = Typography;
+  const dispatch = useDispatch();
 
+  const [sales, setSales] = useState({});
+
+  React.useEffect(() => {
+    let loginData = JSON.parse(localStorage.getItem("login"));
+
+    axios
+      .get(
+        `http://localhost:8080/api/admin/dashboard/perYear?year=${props.yearsChoose}`,
+        {
+          headers: {
+            Authorization: "Bearer " + loginData.dataLogin.accessToken,
+          },
+        }
+      )
+      .then((response) => {
+        setSales(response.data.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log("request");
+        } else if (error.message) {
+          console.log(error.message);
+        }
+      });
+  }, [props.yearsChoose]);
+
+  const { valueHeader } = useSelector((state) => state.DashboardReducer);
   const items = [
     {
-      Title: "3,6K",
+      Title: valueHeader.totalUser,
       user: "Users",
     },
     {
-      Title: "2m",
-      user: "Clicks",
-    },
-    {
-      Title: "$772",
-      user: "Sales",
-    },
-    {
-      Title: "82",
+      Title: valueHeader.totalProduct,
       user: "Items",
+    },
+
+    {
+      Title: numberWithCommas(valueHeader.todaySales) + "Đ",
+      user: "Today sale",
+    },
+
+    {
+      Title: numberWithCommas(valueHeader.totalSales) + "Đ",
+      user: "Total Sales",
+    },
+  ];
+  const series = [
+    {
+      name: "Sales",
+      data: [
+        sales[0],
+        sales[1],
+        sales[2],
+        sales[3],
+        sales[4],
+        sales[5],
+        sales[6],
+        sales[7],
+        sales[8],
+        sales[9],
+        sales[10],
+        sales[11],
+      ],
+      color: "#fff",
     },
   ];
 
@@ -30,19 +85,16 @@ function EChart() {
         <ReactApexChart
           className="bar-chart"
           options={eChart.options}
-          series={eChart.series}
+          series={series}
           type="bar"
           height={220}
         />
       </div>
       <div className="chart-vistior">
-        <Title level={5}>Active Users</Title>
+        <Title level={5}>Hoạt động</Title>
+
         <Paragraph className="lastweek">
-          than last week <span className="bnb2">+30%</span>
-        </Paragraph>
-        <Paragraph className="lastweek">
-          We have created multiple options for you to put together and customise
-          into pixel perfect pages.
+          Các số liệu hoạt động của ministore
         </Paragraph>
         <Row gutter>
           {items.map((v, index) => (

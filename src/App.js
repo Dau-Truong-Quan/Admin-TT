@@ -21,6 +21,10 @@ import DrawerCycberbug from "./HOC/CyberBug/DrawerCycberbug";
 import IndexCycberbug from "./template/HomeTemplate/indexCycberbug";
 import TabOrder from "./template/Page/OrderManager/TabOrder";
 import Dashboard from "./template/Page/Dashboard/Dashboard";
+import "./assets/styles/main.css";
+import "./assets/styles/responsive.css";
+import ProductManager from "./template/Page/ProductManager/ProductManager";
+
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -41,6 +45,11 @@ function App() {
           exact
           path="/projectManager"
           Component={ProjectManager}
+        />
+        <CycberBugTemplate
+          exact
+          path="/productManager"
+          Component={ProductManager}
         />
         <CycberBugTemplate
           exact

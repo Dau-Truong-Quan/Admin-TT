@@ -46,7 +46,7 @@ const ProjectManager = () => {
       title: "Người nhập",
       key: "name",
       render: (text, record, index) => {
-        return <p>{record.user.firstName + " " + record.user.lastName}</p>;
+        return <p>{record.user?.firstName + " " + record.user?.lastName}</p>;
       },
       sorter: (a, b) => a.age - b.age,
       sortOrder: sortedInfo.columnKey === "age" ? sortedInfo.order : null,
@@ -96,7 +96,7 @@ const ProjectManager = () => {
   ];
   return (
     <div className="container">
-      <div className="mt-5 mb-5 ">Project Manager</div>
+      <div className="mt-5 mb-5 ">Import Manager</div>
       <Space
         style={{
           marginBottom: 16,

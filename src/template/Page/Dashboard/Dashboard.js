@@ -1,14 +1,66 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-import { Card, Col, Row, Typography } from "antd";
+import { Card, Col, Row, Typography, Dropdown, Menu, Space } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { DownOutlined } from "@ant-design/icons";
 
-import Paragraph from "antd/lib/typography/Paragraph";
 import EChart from "./EChart";
 import LineChart from "./LineChart";
+import axios from "axios";
+import Title from "antd/lib/skeleton/Title";
 
 function Dashboard() {
-  const { Title, Text } = Typography;
+  const [years, setYears] = useState([]);
+  const [yearsChoose, setYearsChoose] = useState(2022);
 
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    let loginData = JSON.parse(localStorage.getItem("login"));
+
+    axios
+      .get(`http://localhost:8080/api/admin/dashboard`, {
+        headers: {
+          Authorization: "Bearer " + loginData.dataLogin.accessToken,
+        },
+      })
+      .then((response) => {
+        dispatch({ type: "SET_DASHBOARD", valueHeader: response.data.data });
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log("request");
+        } else if (error.message) {
+          console.log(error.message);
+        }
+      });
+  }, []);
+  React.useEffect(() => {
+    let loginData = JSON.parse(localStorage.getItem("login"));
+
+    axios
+      .get(`http://localhost:8080/api/admin/dashboard/getYear`, {
+        headers: {
+          Authorization: "Bearer " + loginData.dataLogin.accessToken,
+        },
+      })
+      .then((response) => {
+        setYears(response.data.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log("request");
+        } else if (error.message) {
+          console.log(error.message);
+        }
+      });
+  }, []);
+
+  const { valueHeader } = useSelector((state) => state.DashboardReducer);
+  console.log(valueHeader);
   const dollor = [
     <svg
       width="22"
@@ -98,38 +150,47 @@ function Dashboard() {
   const count = [
     {
       today: "Today’s Sales",
-      title: "$53,000",
-      persent: "+30%",
+      title: valueHeader?.todaySales,
+      persent: " +30%",
       icon: dollor,
       bnb: "bnb2",
     },
     {
-      today: "Today’s Users",
-      title: "3,200",
-      persent: "+20%",
+      today: "Total Users",
+      title: valueHeader?.totalUser,
+      persent: "",
       icon: profile,
       bnb: "bnb2",
     },
     {
-      today: "New Clients",
-      title: "+1,200",
-      persent: "-20%",
-      icon: heart,
-      bnb: "redtext",
-    },
-    {
-      today: "New Orders",
-      title: "$13,200",
-      persent: "10%",
+      today: "Total product",
+      title: valueHeader?.totalProduct,
+      persent: " ",
       icon: cart,
       bnb: "bnb2",
     },
   ];
 
+  const menu = (
+    <Menu
+      selectable
+      defaultSelectedKeys={["3"]}
+      items={years?.map((item, index) => {
+        return {
+          key: item,
+          label: item,
+          onClick: (e) => {
+            setYearsChoose(e.key);
+          },
+        };
+      })}
+    />
+  );
+
   return (
     <>
-      <div className="layout-content">
-        <Row className="rowgap-vbox" gutter={[24, 0]}>
+      <div className="layout-content" style={{ width: "75%" }}>
+        {/* <Row className="rowgap-vbox" gutter={[24, 0]}>
           {count.map((c, index) => (
             <Col
               key={index}
@@ -146,7 +207,8 @@ function Dashboard() {
                     <Col xs={18}>
                       <span>{c.today}</span>
                       <Title level={3}>
-                        {c.title} <small className={c.bnb}>{c.persent}</small>
+                        {c.title}
+                        <small className={c.bnb}>{c.persent}</small>
                       </Title>
                     </Col>
                     <Col xs={6}>
@@ -157,12 +219,22 @@ function Dashboard() {
               </Card>
             </Col>
           ))}
-        </Row>
+        </Row> */}
+        <div className="mt-5">
+          <Dropdown overlay={menu} className="ml-5">
+            <Typography.Link>
+              <Space>
+                Năm
+                <DownOutlined />
+              </Space>
+            </Typography.Link>
+          </Dropdown>
+        </div>
 
         <Row gutter={[24, 0]}>
           <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
             <Card bordered={false} className="criclebox h-full">
-              <EChart />
+              <EChart yearsChoose={yearsChoose} />
             </Card>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24">

@@ -13,7 +13,6 @@ import {
   select,
 } from "@redux-saga/core/effects";
 import { taskService } from "../../services/TaskService";
-import { NotificationWithIcon } from "../../util/Notification/NotificationCycberbug";
 import {
   GET_ALL_STATUS,
   GET_ALL_STATUS_SAGA,

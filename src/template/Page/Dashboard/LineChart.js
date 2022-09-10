@@ -14,10 +14,96 @@ import ReactApexChart from "react-apexcharts";
 import { Typography } from "antd";
 import { MinusOutlined } from "@ant-design/icons";
 import lineChart from "./configs/lineChart";
-
+import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 function LineChart() {
   const { Title, Paragraph } = Typography;
+  const [salesThisyear, setSalesThisyear] = useState({});
+  const [salesLastyear, setSalesLastyear] = useState({});
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    let loginData = JSON.parse(localStorage.getItem("login"));
 
+    axios
+      .get(`http://localhost:8080/api/admin/dashboard/perYear?year=${2022}`, {
+        headers: {
+          Authorization: "Bearer " + loginData.dataLogin.accessToken,
+        },
+      })
+      .then((response) => {
+        // dispatch({ type: "SET_COMPARE", compare: response.data.data });
+
+        setSalesThisyear(response.data.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log("request");
+        } else if (error.message) {
+          console.log(error.message);
+        }
+      });
+    axios
+      .get(`http://localhost:8080/api/admin/dashboard/perYear?year=${2021}`, {
+        headers: {
+          Authorization: "Bearer " + loginData.dataLogin.accessToken,
+        },
+      })
+      .then((response) => {
+        // dispatch({ type: "SET_COMPARE", compare: response.data.data });
+        setSalesLastyear(response.data.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log("request");
+        } else if (error.message) {
+          console.log(error.message);
+        }
+      });
+  }, []);
+
+  const series = [
+    {
+      name: "This year",
+      data: [
+        salesThisyear[0],
+        salesThisyear[1],
+        salesThisyear[2],
+        salesThisyear[3],
+        salesThisyear[4],
+        salesThisyear[5],
+        salesThisyear[6],
+        salesThisyear[7],
+        salesThisyear[8],
+        salesThisyear[9],
+        salesThisyear[10],
+        salesThisyear[11],
+      ],
+      offsetY: 0,
+    },
+    {
+      name: "Last year",
+      data: [
+        salesLastyear[0],
+        salesLastyear[1],
+        salesLastyear[2],
+        salesLastyear[3],
+        salesLastyear[4],
+        salesLastyear[5],
+        salesLastyear[6],
+        salesLastyear[7],
+        salesLastyear[8],
+        salesLastyear[9],
+        salesLastyear[10],
+        salesLastyear[11],
+      ],
+      offsetY: 0,
+    },
+  ];
   return (
     <>
       <div className="linechart">
@@ -29,8 +115,8 @@ function LineChart() {
         </div>
         <div className="sales">
           <ul>
-            <li>{<MinusOutlined />} Traffic</li>
-            <li>{<MinusOutlined />} Sales</li>
+            <li>{<MinusOutlined />} Last year</li>
+            <li>{<MinusOutlined />} This year</li>
           </ul>
         </div>
       </div>
@@ -38,7 +124,7 @@ function LineChart() {
       <ReactApexChart
         className="full-width"
         options={lineChart.options}
-        series={lineChart.series}
+        series={series}
         type="area"
         height={350}
         width={"100%"}

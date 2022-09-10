@@ -16,7 +16,7 @@ import { cyberbugsService } from "../../services/cyberbugsService";
 import { TOKEN_CYBERSOFT, USER_LOGIN } from "../../services/configURL";
 import { history } from "../../util/lib/history";
 import { projectService } from "../../services/ProjectService";
-import { NotificationWithIcon } from "../../util/Notification/NotificationCycberbug";
+import { NotificationCycberbug } from "../../util/Notification/NotificationCycberbug";
 import {
   GET_ALL_PROJECT,
   GET_ALL_PROJECT_SAGA,
@@ -108,7 +108,7 @@ function* deleteProjectSaga(action) {
       projectService.deleteProject(action.idProject)
     );
     yield delay(500);
-    NotificationWithIcon("success", "Delete successs");
+    NotificationCycberbug("success", "Delete successs");
     yield put({
       type: "GET_LIST_PROJECT",
     });

@@ -49,8 +49,7 @@ const LoginCyberBugsWithFormik = withFormik({
     // Validate form field
     email: Yup.string()
       .required("Email is required")
-      .min(5, "Email must have min 5 characters")
-      .max(10, "Email have max 10 characters"),
+      .min(1, "Email must have min 1 characters"),
   }),
   handleSubmit: ({ email, passWord }, { props, setSubmitting }) => {
     props.dispatch(signinCyberbugAction(email, passWord));

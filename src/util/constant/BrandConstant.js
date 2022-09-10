@@ -1,0 +1,2 @@
+export const GET_ALL_BRAND = "GET_ALL_BRAND";
+export const GET_ALL_BRAND_SAGA = "GET_ALL_BRAND_SAGA";

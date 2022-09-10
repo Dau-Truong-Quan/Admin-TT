@@ -13,14 +13,14 @@ import {
   select,
 } from "@redux-saga/core/effects";
 import { taskService } from "../../services/TaskService";
-import { NotificationWithIcon } from "../../util/Notification/NotificationCycberbug";
+import { NotificationCycberbug } from "../../util/Notification/NotificationCycberbug";
 import { history } from "../../util/lib/history";
 function* createTaskSaga(action) {
   try {
     const { data, status } = yield call(() =>
       taskService.createTask(action.taskObject)
     );
-    NotificationWithIcon("success", "Create task success");
+    NotificationCycberbug("success", "Create task success");
     history.push("/projectManager");
   } catch (error) {
     if (error.response) {
