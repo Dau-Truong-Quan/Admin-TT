@@ -1,6 +1,6 @@
-import { baseService } from "./baseService";
+import { QuanService } from "./QuanService";
 
-export class UserService extends baseService {
+export class UserService extends QuanService {
   constructor() {
     super();
   }
@@ -15,6 +15,12 @@ export class UserService extends baseService {
   };
   getUserByProjectId = (idProject) => {
     return this.get(`Users/getUserByProjectId?idProject=${idProject}`);
+  };
+  getAllUser = () => {
+    return this.get(`admin/user/all`);
+  };
+  deleteUser = (id) => {
+    return this.delete(`admin/user/${id}`);
   };
 }
 

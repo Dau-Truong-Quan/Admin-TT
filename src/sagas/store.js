@@ -18,6 +18,7 @@ import { FormAddProductToImpotReducer } from "./reducer/FormAddProductToImpotRed
 import { DashboardReducer } from "./reducer/DashboardReducer";
 import { UploadImageReducer } from "./reducer/UploadImageReducer";
 import { CategoryReducer } from "./reducer/CategoryReducer";
+import { UserReducer } from "./reducer/UserReducer";
 import { BrandReducer } from "./reducer/BrandReducer";
 const middleSaga = createSagaMiddleware();
 
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   UploadImageReducer,
   CategoryReducer,
   BrandReducer,
+  UserReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(middleSaga));

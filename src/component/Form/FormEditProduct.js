@@ -3,7 +3,10 @@ import { Editor } from "@tinymce/tinymce-react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { withFormik, Form } from "formik";
 import * as Yup from "yup";
-import { CREATE_PROJECT_SAGA } from "../../constants/CyberBugs/CyberBug";
+import {
+  API_ROOT,
+  CREATE_PROJECT_SAGA,
+} from "../../constants/CyberBugs/CyberBug";
 import UploadImage from "../../template/Page/UploadImage/UploadImage";
 import axios from "axios";
 import { UPLOAD_IMAGE_PRODUCT } from "../../util/constant/UploadImageConstant";
@@ -165,55 +168,82 @@ const createPorjectForm = withFormik({
   }),
   handleSubmit: (values, { props, setSubmitting }) => {
     let loginData = JSON.parse(localStorage.getItem("login"));
-    const { imageFile } = props;
+    const { imageFile, imageProduct } = props;
     const formData = new FormData();
     formData.append("file", imageFile.originFileObj);
-
-    axios
-      .post(
-        `http://localhost:8080/api/image/product2/${loginData?.dataLogin.id}`,
-        formData,
-        {
-          headers: {
-            Authorization: "Bearer " + loginData.dataLogin.accessToken,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          values["image"] = res.data;
-
-          axios
-            .request({
-              method: "PUT",
-              url: `http://localhost:8080/api/admin/product/${values.productId}`,
+    imageProduct === ""
+      ? axios
+          .post(
+            `${API_ROOT}/api/image/product2/${loginData?.dataLogin.id}`,
+            formData,
+            {
               headers: {
                 Authorization: "Bearer " + loginData.dataLogin.accessToken,
+                "Content-Type": "multipart/form-data",
               },
-              data: {
-                brandId: values.brandId,
-                categoryId: values.categoryId,
-                description: values.description,
-                image: values.image,
-                name: values.name,
-                price: values.price,
-                quantity: values.quantity,
-                discount: values.discount,
-              },
-            })
-            .then((response) => {
-              NotificationCycberbug("success", response.data.message);
-              props.dispatch({ type: GET_ALL_PRODUCT_SAGA });
+            }
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              values["image"] = res.data;
 
-              props.dispatch({ type: "CLOSE_DRAWER" });
-            })
-            .catch((error) => {
-              NotificationCycberbug("error", "Chưa điền đủ thông tin");
-            });
-        }
-      })
-      .catch((err) => {});
+              axios
+                .request({
+                  method: "PUT",
+                  url: `${API_ROOT}/api/admin/product/${values.productId}`,
+                  headers: {
+                    Authorization: "Bearer " + loginData.dataLogin.accessToken,
+                  },
+                  data: {
+                    brandId: values.brandId,
+                    categoryId: values.categoryId,
+                    description: values.description,
+                    image: values.image,
+                    name: values.name,
+                    price: values.price,
+                    quantity: values.quantity,
+                    discount: values.discount,
+                  },
+                })
+                .then((response) => {
+                  NotificationCycberbug("success", response.data.message);
+                  props.dispatch({ type: GET_ALL_PRODUCT_SAGA });
+
+                  props.dispatch({ type: "CLOSE_DRAWER" });
+                })
+                .catch((error) => {
+                  NotificationCycberbug("error", "Chưa điền đủ thông tin");
+                });
+            }
+          })
+          .catch((err) => {})
+      : axios
+          .request({
+            method: "PUT",
+            url: `${API_ROOT}/api/admin/product/${values.productId}`,
+            headers: {
+              Authorization: "Bearer " + loginData.dataLogin.accessToken,
+            },
+            data: {
+              brandId: values.brandId,
+              categoryId: values.categoryId,
+              description: values.description,
+              image: imageProduct,
+              name: values.name,
+              price: values.price,
+              quantity: values.quantity,
+              discount: values.discount,
+            },
+          })
+          .then((response) => {
+            NotificationCycberbug("success", response.data.message);
+            props.dispatch({ type: GET_ALL_PRODUCT_SAGA });
+
+            props.dispatch({ type: "CLOSE_DRAWER" });
+          })
+          .catch((error) => {
+            NotificationCycberbug("error", "Chưa điền đủ thông tin");
+          });
   },
   displayName: "Update Form",
 })(FormEditProduct);
@@ -222,6 +252,7 @@ const mapStateToProps = (state) => {
     arrCategory: state.ProjectCategoryRedux.arrCategory,
     projectEdit: state.ProductReducer.detailProduct,
     imageFile: state.UploadImageReducer.fileImage,
+    imageProduct: state.UploadImageReducer.imageProduct,
   };
 };
 export default connect(mapStateToProps)(createPorjectForm);

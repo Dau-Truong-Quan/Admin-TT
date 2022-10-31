@@ -7,7 +7,6 @@ import {
   Switch,
   useHistory,
 } from "react-router-dom";
-import { HomeTemplate } from "./template/HomeTemplate/HomeTemplate";
 import Login from "./template/Page/Login/Login";
 import { LoginTemplate } from "./template/HomeTemplate/LoginTemplate";
 
@@ -24,6 +23,7 @@ import Dashboard from "./template/Page/Dashboard/Dashboard";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 import ProductManager from "./template/Page/ProductManager/ProductManager";
+import UserManager from "./template/Page/UserManager/UserManager";
 
 function App() {
   const history = useHistory();
@@ -56,6 +56,7 @@ function App() {
           path="/createProject"
           Component={CreateProject}
         />
+        <CycberBugTemplate exact path="/userManager" Component={UserManager} />
         <CycberBugTemplate exact path="/" Component={Dashboard} />
         <CycberBugTemplate exact path="/order" Component={TabOrder} />
       </Switch>

@@ -4,10 +4,12 @@ import {
   GET_FILE_IMAGE,
   UPLOAD_IMAGE_PRODUCT,
 } from "../../util/constant/UploadImageConstant";
+import { UPLOAD_IMAGE_USER } from "../../util/constant/UserContant";
 
 const initialState = {
   fileImage: [],
   imageProduct: "",
+  imageUser: "",
 };
 
 export const UploadImageReducer = (state = initialState, action) => {
@@ -17,6 +19,8 @@ export const UploadImageReducer = (state = initialState, action) => {
       return { ...state, fileImage: action.fileImage };
     case UPLOAD_IMAGE_PRODUCT:
       return { ...state, imageProduct: action.imageProduct };
+    case UPLOAD_IMAGE_USER:
+      return { ...state, imageUser: action.imageUser };
 
     default:
       return state;

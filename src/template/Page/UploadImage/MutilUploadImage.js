@@ -2,6 +2,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { API_ROOT } from "../../../constants/CyberBugs/CyberBug";
 import { GET_FILE_IMAGE } from "../../../util/constant/UploadImageConstant";
 
 const getBase64 = (file) =>
@@ -18,17 +19,54 @@ const MutilUploadImage = (props) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
-  const [fileList, setFileList] = useState([]);
+  const imageNew = props.image;
+  const type = props.type;
+  console.log(imageNew);
+  const [fileList, setFileList] = useState([
+    type === "user"
+      ? imageNew
+        ? {
+            uid: "-1",
+            name: "image.png",
+            status: "done",
+            url: `${API_ROOT}/images/users/${imageNew}`,
+          }
+        : {}
+      : imageNew
+      ? {
+          uid: "-1",
+          name: "image.png",
+          status: "done",
+          url: `${API_ROOT}/images/products/${imageNew}`,
+        }
+      : {},
+  ]);
   const dispatch = useDispatch();
   const handleCancel = () => setPreviewOpen(false);
-  const type = props.type;
-  const imageNew = props.image;
+
   const image = useSelector((state) => state.UploadImageReducer.imageProduct);
 
   useEffect(() => {
-    if (type == "product") {
-    }
-  }, []);
+    setFileList([
+      type === "user"
+        ? imageNew
+          ? {
+              uid: "-1",
+              name: "image.png",
+              status: "done",
+              url: `${API_ROOT}/images/users/${imageNew}`,
+            }
+          : {}
+        : imageNew
+        ? {
+            uid: "-1",
+            name: "image.png",
+            status: "done",
+            url: `${API_ROOT}/images/products/${imageNew}`,
+          }
+        : {},
+    ]);
+  }, [imageNew]);
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);

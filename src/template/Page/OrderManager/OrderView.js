@@ -8,6 +8,7 @@ import image from "../../../assets/img/chuaCoDonHang.png";
 import { message } from "antd";
 import { CarOutlined, MoneyCollectOutlined } from "@ant-design/icons";
 import numberWithCommas from "../../../util/lib/numberWithCommas";
+import { API_ROOT } from "../../../constants/CyberBugs/CyberBug";
 const OrderView = (props) => {
   const dispatch = useDispatch();
 
@@ -18,7 +19,7 @@ const OrderView = (props) => {
     let loginData = JSON.parse(localStorage.getItem("login"));
 
     axios
-      .get(`http://localhost:8080/api/admin/order/`, {
+      .get(`${API_ROOT}/api/admin/order/`, {
         params: {
           statusId: idOrder,
         },
@@ -47,7 +48,7 @@ const OrderView = (props) => {
     axios
       .request({
         method: "PUT",
-        url: `http://localhost:8080/api/order/${orderId}`,
+        url: `${API_ROOT}/api/order/${orderId}`,
         params: {
           statusId: idStatus,
         },
@@ -57,17 +58,14 @@ const OrderView = (props) => {
       })
       .then((response) => {
         axios
-          .get(
-            `http://localhost:8080/api/order/user2/${loginData.dataLogin.id}`,
-            {
-              params: {
-                statusId: idOrder,
-              },
-              headers: {
-                Authorization: "Bearer " + loginData.dataLogin.accessToken,
-              },
-            }
-          )
+          .get(`${API_ROOT}/api/order/user2/${loginData.dataLogin.id}`, {
+            params: {
+              statusId: idOrder,
+            },
+            headers: {
+              Authorization: "Bearer " + loginData.dataLogin.accessToken,
+            },
+          })
           .then((response) => {
             setListOrder(response.data);
           })
@@ -147,7 +145,7 @@ const OrderView = (props) => {
                     <div className="order__view__body__image">
                       <img
                         src={
-                          `http://localhost:8080/products/` +
+                          `${API_ROOT}/images/products/` +
                           itemOrder.product.image
                         }
                         alt=""

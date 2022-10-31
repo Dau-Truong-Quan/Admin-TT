@@ -18,14 +18,6 @@ import { connect, useSelector, useDispatch } from "react-redux";
 import FormEditProject from "../../../component/Form/FormEditProject";
 import { message, Popconfirm } from "antd";
 import { NavLink } from "react-router-dom";
-import {
-  CREATE_IMPORT_SAGA,
-  DELETE_IMPORT_SAGA,
-  GET_ALL_IMPORT,
-  GET_ALL_IMPORT_SAGA,
-  GET_ID_IMPORT,
-} from "../../../util/constant/ImportConstant";
-import FormImport from "../../../component/Form/FormImport";
 import { GET_ALL_IMPORTDETAIL_SAGA } from "../../../util/constant/ImportDetailConstant";
 import {
   DELETE_PRODUCT_SAGA,
@@ -39,14 +31,23 @@ import UploadImage from "../UploadImage/UploadImage";
 import MutilUploadImage from "../UploadImage/MutilUploadImage";
 import FormAddProduct from "../../../component/Form/FormAddProduct";
 import { API_ROOT } from "../../../constants/CyberBugs/CyberBug";
+import {
+  DELETE_USER_SAGA,
+  GET_ALL_USER_SAGA,
+  GET_DETAIL_USER,
+  GET_DETAIL_USER_SAGA,
+  GET_ID_USER,
+} from "../../../util/constant/UserContant";
+import FormAddUser from "../../../component/Form/FormAddUser";
+import FormEditUser from "../../../component/Form/FormEditUser";
 
-const ProductManager = () => {
+const UserManager = () => {
   const [sortedInfo, setSortedInfo] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({ type: GET_ALL_PRODUCT_SAGA });
+    dispatch({ type: GET_ALL_USER_SAGA });
   }, []);
-  const arr = useSelector((state) => state.ProductReducer.arrProduct);
+  const arr = useSelector((state) => state.UserReducer.arrUser);
   console.log(arr);
   const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
@@ -55,8 +56,8 @@ const ProductManager = () => {
   const columns = [
     {
       title: "ID",
-      dataIndex: "productId",
-      key: "productId",
+      dataIndex: "id",
+      key: "id",
       width: "40px",
     },
     {
@@ -65,7 +66,7 @@ const ProductManager = () => {
       render: (text, record, index) => {
         return (
           <div className="w-50">
-            <img src={`${API_ROOT}/images/products/` + record.image} alt />
+            <img src={`${API_ROOT}/images/users/` + record.image} alt />
           </div>
         );
       },
@@ -73,29 +74,30 @@ const ProductManager = () => {
       ellipsis: true,
     },
     {
-      title: "Tên sản phẩm",
+      title: "Tên ",
       key: "name",
-      dataIndex: "name",
+      render: (text, record, index) => {
+        return (
+          <span>
+            {record.lastName} {record.firstName}
+          </span>
+        );
+      },
     },
     {
-      title: "Gía cả",
-      key: "price",
-      render: (text, record, index) => {
-        return <p>{numberWithCommas(record.price)}</p>;
-      },
+      title: "phone",
+      key: "phone",
+      dataIndex: "phone",
 
       ellipsis: true,
     },
     {
-      title: "Số lượng",
-      key: "quantity",
-      render: (text, record, index) => {
-        return <p>{numberWithCommas(record.quantity)}</p>;
-      },
+      title: "email",
+      key: "email",
+      dataIndex: "email",
 
       ellipsis: true,
     },
-
     {
       title: "Action",
       key: "action",
@@ -105,28 +107,31 @@ const ProductManager = () => {
             onClick={() => {
               const action = {
                 type: "OPEN_FORM_CREATE_TASK",
-                Component: <FormEditProduct product={record} />,
-                title: "Sửa sản phẩm",
+                Component: <FormEditUser user={record} />,
+                title: "Sửa thông tin người dùng",
               };
               dispatch(action);
               dispatch({
-                type: GET_ID_PRODUCT,
-                id: record.productId,
+                type: GET_ID_USER,
+                idUser: record.id,
               });
-              dispatch({ type: GET_DETAIL_PRODUCT_SAGA, id: record.productId });
+              dispatch({
+                type: GET_DETAIL_USER,
+                detailUser: record,
+              });
             }}
           />
 
           <Popconfirm
-            title="Are you sure to delete this import?"
+            title="Are you sure to delete this user?"
             onConfirm={() => {
               const action = {
-                type: DELETE_PRODUCT_SAGA,
-                id: record.productId,
+                type: DELETE_USER_SAGA,
+                id: record.id,
               };
 
               dispatch(action);
-              dispatch({ type: GET_ALL_PRODUCT_SAGA });
+              dispatch({ type: GET_ALL_USER_SAGA });
             }}
             okText="Yes"
             cancelText="No"
@@ -150,13 +155,13 @@ const ProductManager = () => {
         onClick={() => {
           const action = {
             type: "OPEN_FORM_CREATE_TASK",
-            Component: <FormAddProduct />,
-            title: "Thêm sản phẩm",
+            Component: <FormAddUser />,
+            title: "Thêm người dùng",
           };
           dispatch(action);
         }}
       >
-        Thêm sản phẩm
+        Thêm người dùng
       </Button>
       {arr && arr.length > 0 && (
         <Table
@@ -170,4 +175,4 @@ const ProductManager = () => {
   );
 };
 
-export default ProductManager;
+export default UserManager;

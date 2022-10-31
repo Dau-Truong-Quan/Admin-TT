@@ -17,6 +17,7 @@ import lineChart from "./configs/lineChart";
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { API_ROOT } from "../../../constants/CyberBugs/CyberBug";
 function LineChart() {
   const { Title, Paragraph } = Typography;
   const [salesThisyear, setSalesThisyear] = useState({});
@@ -26,7 +27,7 @@ function LineChart() {
     let loginData = JSON.parse(localStorage.getItem("login"));
 
     axios
-      .get(`http://localhost:8080/api/admin/dashboard/perYear?year=${2022}`, {
+      .get(`${API_ROOT}/api/admin/dashboard/perYear?year=${2022}`, {
         headers: {
           Authorization: "Bearer " + loginData.dataLogin.accessToken,
         },
@@ -46,7 +47,7 @@ function LineChart() {
         }
       });
     axios
-      .get(`http://localhost:8080/api/admin/dashboard/perYear?year=${2021}`, {
+      .get(`${API_ROOT}/api/admin/dashboard/perYear?year=${2021}`, {
         headers: {
           Authorization: "Bearer " + loginData.dataLogin.accessToken,
         },

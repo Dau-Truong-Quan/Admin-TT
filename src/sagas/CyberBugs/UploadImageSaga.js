@@ -15,6 +15,7 @@ import {
   UPLOAD_IMAGE_PRODUCT_SAGA,
 } from "../../util/constant/UploadImageConstant";
 import axios from "axios";
+import { API_ROOT } from "../../constants/CyberBugs/CyberBug";
 function* updaloadImageProduct(action) {
   try {
     let loginData = JSON.parse(localStorage.getItem("login"));
@@ -23,7 +24,7 @@ function* updaloadImageProduct(action) {
 
     axios
       .post(
-        `http://localhost:8080/api/image/user2/${loginData?.dataLogin.id}`,
+        `${API_ROOT}/api/image/user2/${loginData?.dataLogin.id}`,
         formData,
         {
           headers: {

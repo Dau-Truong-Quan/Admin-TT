@@ -10,6 +10,7 @@ import * as StatusSaga from "./CyberBugs/StatusSaga";
 import * as ProductSaga from "./CyberBugs/ProductSaga";
 import * as ImportSaga from "./CyberBugs/ImportSaga";
 import * as ImportDetailSaga from "./CyberBugs/ImportDetailSaga";
+import * as UserSaga from "./CyberBugs/UserSaga";
 export function* rootSaga() {
   yield all([
     Cyberbug.theoDoiSignin(),
@@ -39,5 +40,7 @@ export function* rootSaga() {
     ImportDetailSaga.theodoigetAllImportDetail(),
     ImportDetailSaga.theodoiaddProductToImport(),
     ImportDetailSaga.theodoideleteImportDetail(),
+    UserSaga.theodoigetAllUser(),
+    UserSaga.theodoideleteUser(),
   ]);
 }

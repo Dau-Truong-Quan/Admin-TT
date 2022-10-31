@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import numberWithCommas from "../../../util/lib/numberWithCommas";
+import { API_ROOT } from "../../../constants/CyberBugs/CyberBug";
 function EChart(props) {
   const { Title, Paragraph } = Typography;
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function EChart(props) {
 
     axios
       .get(
-        `http://localhost:8080/api/admin/dashboard/perYear?year=${props.yearsChoose}`,
+        `${API_ROOT}/api/admin/dashboard/perYear?year=${props.yearsChoose}`,
         {
           headers: {
             Authorization: "Bearer " + loginData.dataLogin.accessToken,

@@ -2,6 +2,7 @@ import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { API_ROOT } from "../../../constants/CyberBugs/CyberBug";
 import { GET_FILE_IMAGE } from "../../../util/constant/UploadImageConstant";
 
 const getBase64 = (img, callback) => {
@@ -39,7 +40,7 @@ const UploadImage = (props) => {
       if (typeof image !== "undefined") {
         setImageUrl(undefined);
       } else {
-        setImageUrl(`http://localhost:8080/products/${imageNew}`);
+        setImageUrl(`${API_ROOT}/images/products/${imageNew}`);
       }
     }
   }, []);

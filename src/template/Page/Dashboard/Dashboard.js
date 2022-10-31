@@ -8,6 +8,7 @@ import EChart from "./EChart";
 import LineChart from "./LineChart";
 import axios from "axios";
 import Title from "antd/lib/skeleton/Title";
+import { API_ROOT } from "../../../constants/CyberBugs/CyberBug";
 
 function Dashboard() {
   const [years, setYears] = useState([]);
@@ -18,7 +19,7 @@ function Dashboard() {
     let loginData = JSON.parse(localStorage.getItem("login"));
 
     axios
-      .get(`http://localhost:8080/api/admin/dashboard`, {
+      .get(`${API_ROOT}/api/admin/dashboard`, {
         headers: {
           Authorization: "Bearer " + loginData.dataLogin.accessToken,
         },
@@ -40,7 +41,7 @@ function Dashboard() {
     let loginData = JSON.parse(localStorage.getItem("login"));
 
     axios
-      .get(`http://localhost:8080/api/admin/dashboard/getYear`, {
+      .get(`${API_ROOT}/api/admin/dashboard/getYear`, {
         headers: {
           Authorization: "Bearer " + loginData.dataLogin.accessToken,
         },

@@ -3,7 +3,10 @@ import { Editor } from "@tinymce/tinymce-react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { withFormik, Form } from "formik";
 import * as Yup from "yup";
-import { CREATE_PROJECT_SAGA } from "../../constants/CyberBugs/CyberBug";
+import {
+  API_ROOT,
+  CREATE_PROJECT_SAGA,
+} from "../../constants/CyberBugs/CyberBug";
 import UploadImage from "../../template/Page/UploadImage/UploadImage";
 import axios from "axios";
 import { NotificationCycberbug } from "../../util/Notification/NotificationCycberbug";
@@ -159,7 +162,7 @@ const createPorjectForm = withFormik({
     formData.append("file", imageFile.originFileObj);
 
     axios
-      .post(`http://localhost:8080/api/image/product`, formData, {
+      .post(`${API_ROOT}/api/image/product`, formData, {
         headers: {
           Authorization: "Bearer " + loginData.dataLogin.accessToken,
           "Content-Type": "multipart/form-data",
@@ -177,7 +180,7 @@ const createPorjectForm = withFormik({
           axios
             .request({
               method: "POST",
-              url: `http://localhost:8080/api/admin/product/addProduct`,
+              url: `${API_ROOT}/api/admin/product/addProduct`,
               headers: {
                 Authorization: "Bearer " + loginData.dataLogin.accessToken,
               },

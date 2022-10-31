@@ -50,13 +50,21 @@ const MenuCycberBug = () => {
           </NavLink>
         </div>
         <div>
-          <i className="fa fa-cog" />
           <NavLink
             className="text-dark"
             activeClassName="font-weight-bold"
             to="/productManager"
           >
             Manager Product
+          </NavLink>
+        </div>
+        <div>
+          <NavLink
+            className="text-dark"
+            activeClassName="font-weight-bold"
+            to="/userManager"
+          >
+            Manager User
           </NavLink>
         </div>
       </div>
